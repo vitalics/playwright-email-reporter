@@ -1,5 +1,5 @@
 {
-  "name": "playwright-email-reporter",
+  "name": "playwright-nodemailer-reporter",
   "version": "0.1.0",
   "description": "Playwright email reporter based on nodemailer",
   "main": "dist/index.cjs",

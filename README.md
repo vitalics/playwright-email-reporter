@@ -1,6 +1,6 @@
-# Playwright Email Reporter
+# Playwright Nodemailer Reporter
 
-This is a Playwright plugin that sends email reports after test runs.
+This is a Playwright plugin that sends email reports after test runs using nodemailer.
 
 ## Installation
 
