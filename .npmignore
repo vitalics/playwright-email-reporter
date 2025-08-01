@@ -1,0 +1,7 @@
+example/*
+src/*
+.changeset/*
+.github/*
+tsup.config.ts
+pnpm-workspace.yaml
+tsconfig.json

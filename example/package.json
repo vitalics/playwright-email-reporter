@@ -1,0 +1,22 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "maildev:start": "docker run -p 1080:1080 -p 1025:1025 maildev/maildev",
+    "test": "playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "@playwright/test": "1.54.1",
+    "@types/node": "24.1.0"
+  },
+  "dependencies": {
+    "playwright-email-reporter": "link:.."
+  }
+}

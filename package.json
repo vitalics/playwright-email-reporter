@@ -1,0 +1,57 @@
+{
+  "name": "playwright-email-reporter",
+  "version": "0.1.0",
+  "description": "Playwright email reporter based on nodemailer",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "keywords": [
+    "playwright",
+    "reporter",
+    "email",
+    "nodemailer",
+    "gmail"
+  ],
+  "homepage": "https://github.com/vitalics/playwright-email-reporter#readme",
+  "bugs": {
+    "url": "https://github.com/vitalics/playwright-email-reporter/issues",
+    "email": "vitalicset@yandex.ru"
+  },
+  "repository": {
+    "url": "git+https://github.com/vitalics/playwright-email-reporter.git",
+    "type": "git"
+  },
+  "author": "Vitali Haradkou <vitalicset@yandex.ru>",
+  "license": "MIT",
+  "devDependencies": {
+    "@changesets/cli": "2.29.5",
+    "@types/node": "24.1.0",
+    "@types/nodemailer": "6.4.17",
+    "tsup": "8.5.0",
+    "tsx": "4.20.3",
+    "typescript": "5.8.3"
+  },
+  "peerDependencies": {
+    "@playwright/test": ">=1.13.0"
+  },
+  "dependencies": {
+    "nodemailer": "7.0.5"
+  }
+}
