@@ -1,0 +1,5 @@
+packages:
+  - "."
+savePrefix: ""
+onlyBuiltDependencies:
+  - esbuild
