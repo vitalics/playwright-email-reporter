@@ -19,9 +19,9 @@ type Email = `${string}@${string}.${string}`;
 type EmailWithName = `"${string}" <${Email}>`;
 
 /** Array of the test cases with its results. This is Array of Array because it helps to organize tables */
-export type EmailTestCases = [test: TestCase, result: TestResult][];
+export type NodemailerTestCases = [test: TestCase, result: TestResult][];
 
-export type EmailReporterOptions = {
+export type NodemailerReporterOptions = {
   /**
    * When to send email.
    * @default 'on-failure'
@@ -220,7 +220,7 @@ export type EmailReporterOptions = {
         | string
         | ((
             result: FullResult,
-            testCases: EmailTestCases,
+            testCases: NodemailerTestCases,
           ) => string | Promise<string>);
     }
   | {
@@ -260,23 +260,23 @@ export type EmailReporterOptions = {
         | string
         | ((
             result: FullResult,
-            testCases: EmailTestCases,
+            testCases: NodemailerTestCases,
           ) => string | Promise<string>);
     }
 );
 
 export default class EmailReporter implements Reporter {
-  readonly #options: Readonly<EmailReporterOptions>;
-  readonly #testCases: EmailTestCases = [];
+  readonly #options: Readonly<NodemailerReporterOptions>;
+  readonly #testCases: NodemailerTestCases = [];
   #html: string | null = null;
   #text: string | null = null;
 
-  constructor(options: EmailReporterOptions) {
+  constructor(options: NodemailerReporterOptions) {
     this.#options = options;
   }
 
   async sendEmail(subject: string) {
-    const transportOptions: Partial<EmailReporterOptions> = {
+    const transportOptions: Partial<NodemailerReporterOptions> = {
       host:
         this.#options.host ?? process.env.PLAYWRIGHT_EMAIL_HOST ?? undefined,
       port:
