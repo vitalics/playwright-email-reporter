@@ -36,7 +36,7 @@ importers:
 
   example:
     dependencies:
-      playwright-email-reporter:
+      playwright-nodemailer-reporter:
         specifier: link:..
         version: link:..
     devDependencies:

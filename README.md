@@ -7,9 +7,9 @@ This is a Playwright plugin that sends email reports after test runs using nodem
 To install the Playwright Email Reporter plugin, run the following command:
 
 ```bash
-npm install playwright-email-reporter # npm
-yarn add playwright-email-reporter # yarn
-pnpm add playwright-email-reporter # pnpm
+npm install playwright-nodemailer-reporter # npm
+yarn add playwright-nodemailer-reporter # yarn
+pnpm add playwright-nodemailer-reporter # pnpm
 ```
 
 ## Usage
@@ -18,18 +18,18 @@ To use the Playwright Email Reporter plugin, add it to your Playwright configura
 
 ```ts
 import { defineConfig } from "@playwright/test";
-import { type EmailReporterOptions } from "playwright-email-reporter";
+import { type NodemailerReporterOptions } from "playwright-nodemailer-reporter";
 
 export default defineConfig({
   reporter: [
     [
-      "playwright-email-reporter",
+      "playwright-nodemailer-reporter",
       {
         from: "your-email@example.com",
         to: "recipient-email@example.com",
         subject: "Playwright Test Report",
         html: "<p>Test report</p>",
-      } satisfies EmailReporterOptions,
+      } satisfies NodemailerReporterOptions,
     ],
   ],
 });
@@ -48,11 +48,11 @@ export default defineConfig({
 ```ts
 import { defineConfig } from "@playwright/test";
 import {
-  type EmailReporterOptions,
-  type EmailTestCases,
-} from "playwright-email-reporter";
+  type NodemailerReporterOptions,
+  type NodemailerTestCases,
+} from "playwright-nodemailer-reporter";
 
-function formatTable(result: TestResult, testCases: EmailTestCases) {
+function formatTable(result: TestResult, testCases: NodemailerTestCases) {
   const str = Object.values(testCases).forEach((testCase) => {
     return `<tr><td>${testCase.test.name}</td><td>${testCase.result.status}</td></tr>`;
   });
@@ -62,7 +62,7 @@ function formatTable(result: TestResult, testCases: EmailTestCases) {
 export default defineConfig({
   reporter: [
     [
-      "playwright-email-reporter",
+      "playwright-nodemailer-reporter",
       {
         send: "always",
         from: "your-email@example.com",
@@ -71,7 +71,7 @@ export default defineConfig({
           `Playwright Test Report - ${result.status === "success" ? "Success" : "Failure"}`,
         html: (result, testCases) =>
           `<p>Test report for ${formatTable(result, testCases)}</p>`,
-      } satisfies EmailReporterOptions,
+      } satisfies NodemailerReporterOptions,
     ],
   ],
 });
@@ -83,12 +83,12 @@ To attach files to the email, you can use the `attachments` option:
 
 ```ts
 import { defineConfig } from "@playwright/test";
-import { type EmailReporterOptions } from "playwright-email-reporter";
+import { type NodemailerReporterOptions } from "playwright-nodemailer-reporter";
 
 export default defineConfig({
   reporter: [
     [
-      "playwright-email-reporter",
+      "playwright-nodemailer-reporter",
       {
         send: "always",
         from: "your-email@example.com",
@@ -102,7 +102,7 @@ export default defineConfig({
             name: "file.txt",
           },
         ],
-      } satisfies EmailReporterOptions,
+      } satisfies NodemailerReporterOptions,
     ],
   ],
 });
@@ -112,12 +112,12 @@ Example with [maildev](https://github.com/maildev/maildev?tab=readme-ov-file#doc
 
 ```ts
 import { defineConfig } from "@playwright/test";
-import { type EmailReporterOptions } from "playwright-email-reporter";
+import { type NodemailerReporterOptions } from "playwright-nodemailer-reporter";
 
 export default defineConfig({
   reporter: [
     [
-      "playwright-email-reporter",
+      "playwright-nodemailer-reporter",
       {
         send: "always",
         service: "Maildev",
@@ -146,7 +146,7 @@ export default defineConfig({
           </table>
           `;
         },
-      } satisfies EmailReporterOptions,
+      } satisfies NodemailerReporterOptions,
     ],
   ],
 });
@@ -158,12 +158,12 @@ Example with an image [attachment](https://nodemailer.com/message/attachments):
 
 ```ts
 import { defineConfig } from "@playwright/test";
-import { type EmailReporterOptions } from "playwright-email-reporter";
+import { type NodemailerReporterOptions } from "playwright-nodemailer-reporter";
 
 export default defineConfig({
   reporter: [
     [
-      "playwright-email-reporter",
+      "playwright-nodemailer-reporter",
       {
         send: "always",
         from: "your-email@example.com",
@@ -182,7 +182,7 @@ export default defineConfig({
             contentType: "image/png",
           },
         ],
-      } satisfies EmailReporterOptions,
+      } satisfies NodemailerReporterOptions,
     ],
   ],
 });
@@ -259,7 +259,7 @@ All services are optional and reused from nodemailer. [See the docs of supported
 
 ## API reference
 
-### type EmailTestCases
+### type NodemailerTestCases
 
 Array<[test: TestCase, result: TestResult]>
 
@@ -268,7 +268,7 @@ Where `value` is an array with 2 keys.
 - `0` - `TestCase` - [TestCase](https://playwright.dev/docs/api/class-testcase) Object from Playwright.
 - `1` - `TestResult` - [TestResult](https://playwright.dev/docs/api/class-testresult) Object from Playwright.
 
-### type EmailReporterOptions
+### type NodemailerReporterOptions
 
 Options for the email reporter.
 

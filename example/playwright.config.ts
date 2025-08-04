@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 import fs from "node:fs";
 
-import { type EmailReporterOptions } from "playwright-email-reporter";
+import { type NodemailerReporterOptions } from "playwright-nodemailer-reporter";
 
 /**
  * Read environment variables from file.
@@ -28,7 +28,7 @@ export default defineConfig({
   reporter: [
     ["html"],
     [
-      "playwright-email-reporter",
+      "playwright-nodemailer-reporter",
       {
         send: "always",
         service: "Maildev",
@@ -40,7 +40,7 @@ export default defineConfig({
           const htmlContent = fs.readFileSync("./index.html", "utf8");
           return htmlContent;
         },
-      } satisfies EmailReporterOptions,
+      } satisfies NodemailerReporterOptions,
     ],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */

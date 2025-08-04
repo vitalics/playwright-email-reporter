@@ -17,6 +17,6 @@
     "@types/node": "24.1.0"
   },
   "dependencies": {
-    "playwright-email-reporter": "link:.."
+    "playwright-nodemailer-reporter": "link:.."
   }
 }
